@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sampah : MonoBehaviour {
+	public int tipeSampah;
 	private void Update() {
 		Rigidbody2D body = GetComponent<Rigidbody2D>();
 		body.AddForce(Vector2.right);
