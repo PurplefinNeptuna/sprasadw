@@ -8,5 +8,6 @@ public class Sampah : MonoBehaviour {
 		Rigidbody2D body = GetComponent<Rigidbody2D>();
 		body.AddForce(Vector2.right);
 		body.velocity = Mathf.Min(body.velocity.magnitude, Game.main.maxSpeed) * body.velocity.normalized;
+		if (transform.localPosition.x > 10f) Destroy(gameObject);
 	}
 }
