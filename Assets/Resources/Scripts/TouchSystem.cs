@@ -61,6 +61,7 @@ public class TouchSystem : MonoBehaviour {
 		}
 		Game.main.DebugLog.text = multiTouchInfo;
 	}
+
 	private Vector2 GetTouchPosition(Vector2 touchPosition) {
 		return Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
 	}
@@ -72,9 +73,11 @@ public class TouchSystem : MonoBehaviour {
 	private GameObject SpawnCircle(Touch t) {
 		float scale = Mathf.Max(GetTouchSize(t.radius), .3f) * 2f;
 		GameObject c = Instantiate(DebugCircle);
+		TouchArea ta = c.GetComponent<TouchArea>();
 		c.name = "Touch" + t.fingerId;
 		c.transform.position = GetTouchPosition(t.position);
 		c.transform.localScale = new Vector3(scale, scale, 1f);
+		ta.radius = Mathf.Max(GetTouchSize(t.radius), .3f);
 		return c;
 	}
 }
