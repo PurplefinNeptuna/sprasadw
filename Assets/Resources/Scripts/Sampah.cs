@@ -37,19 +37,4 @@ public class Sampah : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-
-	private void OnMouseDown() {
-		drag = true;
-	}
-
-	private void OnMouseDrag() {
-		drag = true;
-		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
-		Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-		transform.position = objPosition;
-	}
-
-	private void OnMouseUp() {
-		drag = false;
-	}
 }

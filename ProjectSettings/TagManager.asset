@@ -53,3 +53,6 @@ TagManager:
   - name: Basket
     uniqueID: 2438041179
     locked: 0
+  - name: Debug
+    uniqueID: 1681844457
+    locked: 0

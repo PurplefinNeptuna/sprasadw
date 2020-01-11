@@ -26,6 +26,7 @@ public class Game : MonoBehaviour {
 	public Image[] wrongImage;
 	public GameObject gameoverPanel;
 	public TMP_Text GOScore;
+	public TMP_Text DebugLog;
 	public bool startSpawn = true;
 
 	private void Awake() {
