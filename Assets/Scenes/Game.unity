@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 469428043}
   - component: {fileID: 469428045}
   - component: {fileID: 469428046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: organik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 558347913}
   - component: {fileID: 558347915}
   - component: {fileID: 558347916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: residu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1825,7 @@ GameObject:
   - component: {fileID: 1262201944}
   - component: {fileID: 1262201946}
   - component: {fileID: 1262201947}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: anorganik
   m_TagString: Untagged
   m_Icon: {fileID: 0}

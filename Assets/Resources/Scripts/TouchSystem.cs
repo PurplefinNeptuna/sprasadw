@@ -55,8 +55,8 @@ public class TouchSystem : MonoBehaviour {
 		multiTouchInfo = "";
 		for(int i = 0; i < touches.Length; i++) {
 			theTouch = touches[i];
-			multiTouchInfo += string.Format("Touch {0}:\n\tPosition {1}\n\tTap Count:{2}\n\tFinger ID:{3}\n\tRadius:{4} ({5} Units)\n\n",
-			i, theTouch.position, theTouch.tapCount, theTouch.fingerId, theTouch.radius,
+			multiTouchInfo += string.Format("Touch {0}:\n\tPosition {1}\n\tRadius:{2} ({3} Units)\n\n",
+			i, theTouch.position, theTouch.radius,
 			GetTouchSize(theTouch.radius));
 		}
 		Game.main.DebugLog.text = multiTouchInfo;

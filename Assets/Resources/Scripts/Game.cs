@@ -88,8 +88,10 @@ public class Game : MonoBehaviour {
 
 	public GameObject SpawnSampah(Sprite gambar, int tipeSampah = 0) {
 		GameObject newSampah = new GameObject("sampah");
+		newSampah.layer = LayerMask.NameToLayer("Sampah");
 		newSampah.transform.parent = sungai.transform;
 		newSampah.transform.localPosition = new Vector3(-10f, UnityEngine.Random.Range(-spawnY, spawnY), 0f);
+
 		SpriteRenderer srender = newSampah.AddComponent<SpriteRenderer>();
 		srender.sprite = gambar;
 		srender.sortingLayerName = "Item";
