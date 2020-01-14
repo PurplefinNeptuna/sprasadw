@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class IDCircle {
 	public int id;
@@ -28,36 +28,62 @@ public class TouchSystem : MonoBehaviour {
 	private void Update() {
 		touches = Input.touches;
 		TouchDebug();
-		for(int i = 0; i < touches.Length; i++) {
+		for (int i = 0; i < touches.Length; i++) {
 			theTouch = touches[i];
-			if(theTouch.phase == TouchPhase.Began) {
+			if (theTouch.phase == TouchPhase.Began) {
 				pairs.Add(new IDCircle(theTouch.fingerId, SpawnCircle(theTouch)));
 			}
-			else if(theTouch.phase == TouchPhase.Ended) {
+			else if (theTouch.phase == TouchPhase.Ended) {
 				IDCircle nowtouch = pairs.Find(IDCircle => IDCircle.id == theTouch.fingerId);
-				if(nowtouch != null) {
+				if (nowtouch != null) {
 					Destroy(nowtouch.circle);
 					pairs.RemoveAt(pairs.IndexOf(nowtouch));
 				}
 			}
-			else if(theTouch.phase == TouchPhase.Moved) {
+			else if (theTouch.phase == TouchPhase.Moved) {
 				IDCircle nowtouch = pairs.Find(IDCircle => IDCircle.id == theTouch.fingerId);
-				if(nowtouch != null) {
+				if (nowtouch != null) {
 					float scale = Mathf.Max(GetTouchSize(theTouch.radius), .3f) * 2f;
 					nowtouch.circle.transform.position = GetTouchPosition(theTouch.position);
 					nowtouch.circle.transform.localScale = new Vector3(scale, scale, 1f);
 				}
 			}
 		}
+		Touch mouseTouch = new Touch();
+		mouseTouch.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+		mouseTouch.radius = 0.3f;
+		mouseTouch.tapCount = 1;
+		mouseTouch.fingerId = 99;
+
+		if (Input.GetMouseButtonDown(0)) {
+			pairs.Add(new IDCircle(mouseTouch.fingerId, SpawnCircle(mouseTouch)));
+		}
+		else if (Input.GetMouseButtonUp(0)) {
+			IDCircle nowtouch = pairs.Find(IDCircle => IDCircle.id == mouseTouch.fingerId);
+			if (nowtouch != null) {
+				Destroy(nowtouch.circle);
+				pairs.RemoveAt(pairs.IndexOf(nowtouch));
+			}
+		}
+		else if (Input.GetMouseButton(0)) {
+			IDCircle nowtouch = pairs.Find(IDCircle => IDCircle.id == mouseTouch.fingerId);
+			if (nowtouch != null) {
+				nowtouch.circle.transform.position = GetTouchPosition(mouseTouch.position);
+			}
+		}
 	}
 
 	private void TouchDebug() {
 		multiTouchInfo = "";
-		for(int i = 0; i < touches.Length; i++) {
+		for (int i = 0; i < touches.Length; i++) {
 			theTouch = touches[i];
 			multiTouchInfo += string.Format("Touch {0}:\n\tPosition {1}\n\tRadius:{2} ({3} Units)\n\n",
-			i, theTouch.position, theTouch.radius,
-			GetTouchSize(theTouch.radius));
+				i, theTouch.position, theTouch.radius,
+				GetTouchSize(theTouch.radius));
+		}
+		if (Input.GetMouseButton(0)) {
+			multiTouchInfo += string.Format("Mouse:\n\tPosition {0}\n\n",
+				new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 		}
 		Game.main.DebugLog.text = multiTouchInfo;
 	}

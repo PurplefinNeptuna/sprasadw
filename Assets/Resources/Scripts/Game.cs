@@ -36,7 +36,7 @@ public class Game : MonoBehaviour {
 		else if (main != this) {
 			Destroy(gameObject);
 		}
-
+		Input.simulateMouseWithTouches = false;
 		spawnY = sungai.bounds.size.y / 2f;
 	}
 
